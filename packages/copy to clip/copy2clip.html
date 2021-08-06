@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Copy to clipboard http://blog.aajit.com</title>
+<style>
+.clip_button {
+	background:#063;
+	padding:4px;
+	width:100px;
+}
+</style>
+<script type="text/javascript" src="ZeroClipboard.js"></script>
+<script language="JavaScript">
+////copy to clip
+  	var clip = null;
+
+   function $(id) { return document.getElementById(id); }
+
+   function init() 
+   {
+      clip = new ZeroClipboard.Client();
+      clip.setHandCursor( true );
+   }
+
+   function move_swf(ee)
+   {    
+      copything = document.getElementById(ee.id+"_text").value;
+      clip.setText(copything);
+
+         if (clip.div)
+		 {	  
+            clip.receiveEvent('mouseout', null);
+            clip.reposition(ee.id);
+         }
+         else{ clip.glue(ee.id);   }
+ 
+         clip.receiveEvent('mouseover', null);
+ 
+   }    
+   
+</script>
+</head>
+
+<body onload="init();">
+<table width="0" border="0">
+  <tr>
+    <td><input type='text' id='textid_text' value='your text' /></td>
+    <td><div id='textid' onMouseOver='move_swf(this)' class='clip_button'>COPY</div></td>
+  </tr>
+  <tr>
+    <td><input type='text' id='textid2_text' value='your text 2' /></td>
+    <td><div id='textid2' onMouseOver='move_swf(this)' class='clip_button'>COPY</div></td>
+  </tr>
+  <tr>
+    <td><input type='text' id='textid3_text' value='your text 3' /></td>
+    <td><div id='textid3' onMouseOver='move_swf(this)' class='clip_button'>COPY</div></td>
+  </tr>
+  <tr>
+    <td><input type='text' id='textid4_text' value='your text 4' /></td>
+    <td><div id='textid4' onMouseOver='move_swf(this)' class='clip_button'>COPY</div></td>
+  </tr>
+  <tr>
+    <td><input type='text' id='textid5_text' value='your text 5' /></td>
+    <td><div id='textid5' onMouseOver='move_swf(this)' class='clip_button'>COPY</div></td>
+  </tr>
+</table>
+</body>
+</html>

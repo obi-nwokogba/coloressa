@@ -1,0 +1,243 @@
+<!DOCTYPE doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link href="normalize.css" rel="stylesheet" />
+    <link href="coloressastyles.css" rel="stylesheet" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="js/jquery-3.6.0.min.js">
+    </script>
+    <script src="coloressascripts.js">
+    </script>
+    <script src="js/clipboard.min.js">
+    </script>
+    <title>
+        Coloressa - Color finder, picker, discovery, shades, tints, variants - Colors from Obi to You
+    </title>
+</head>
+
+<body>
+    <div class="outermostcontainer">
+        <header>
+        </header>
+        <div class="notify">
+            <span class="" id="notifyType">
+            </span>
+        </div>
+        <div class="container-lg">
+            <span class="pageheader">
+                coloressa
+            </span>
+            <div class="homesection">
+
+
+                <!-- START OF CURRENT COLOR BOX -->
+                <div class="panelbox" id="currentcolorcontainer">
+                    <div class="panelboxheader">
+                        <div class="colorboxescontainer">
+                            <span class="colorboxheader">
+                                CURRENT COLOR
+                                <span class="lightest">
+                                    &middot; </span>
+                                <span class="spanlink" onClick="createstarterpalettevariants()">
+                                    SHOW
+                                </span>
+                            </span>
+
+                            <div class="currentcolorrow">
+                                <div id="currentcolorrow1"></div>
+                                <div id="currentcolorrow2"></div>
+                                <div id="currentcolorrow3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- START OF STARTER PALETTE CONTAINER -->
+                <div class="panelbox" id="startermegacontainer">
+                    <div class="panelboxheader">
+                        <div class="colorboxescontainer">
+                            <span class="colorboxheader">
+                                STARTER PALETTE
+                                <span class="lightest">
+                                    &middot; </span>
+                                <span class="spanlink" onClick="createstarterpalettevariants()">
+                                    CREATE VARIANTS
+                                </span>
+                            </span>
+                            <span id="startercontainer" class="startercontainer"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- START OF VARIANTS CONTAINER -->
+                <div class="panelbox" id="variantsmegacontainer">
+                    <div class="panelboxheader">
+                        <div class="colorboxescontainer">
+                            <span class="colorboxheader">
+                                <span id="variantshexlabel"></span>
+                                <span class="lightest">
+                                    &middot; VARIANTS
+                                    &middot; </span>
+                                <span class="spanlink" onClick="createVariants()">
+                                    RELOAD VARIANTS
+                                </span>
+                            </span>
+                            <span id="variantscontainer" class="variantscontainer"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- START OF SHADES AND TINTS CONTAINER -->
+                <div class="panelbox" id="shadesmegacontainer">
+                    <div class="panelboxheader">
+                        <div class="colorboxescontainer">
+                            <span class="colorboxheader">
+                                <span id="shadeshexlabel"></span>
+                                <span class="lightest">
+                                    &middot; SHADES and TINTS
+                                    &middot; </span>
+                                <span class="spanlink" onClick="createVariants()">
+                                    SEE VARIANTS
+                                </span>
+                            </span>
+                            <span id="shadescontainer" class="shadescontainer"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- START OF GRAYS CONTAINER -->
+                <div class="panelbox">
+                    <div class="panelboxheader">
+                        <div class="colorboxescontainer" id="neutralscontainer">
+                            <span class="colorboxheader">
+                                GRAYS
+                                <span class="lightest">
+                                    &middot; pick one! BEAUTIFUL!
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- END OF GRAYS CONTAINER -->
+                <div class="panelbox">
+                    <div class="panelboxheader">
+                        <div class="colorboxescontainer">
+                            <span class="colorboxheader">
+                                MORE COLORS &middot;
+                                <span class="lightest">
+                                    pick one! LUSH
+                                </span> &middot;
+                                <span class="spanlink" onclick="reloadrandomcolors()">
+                                    RELOAD
+                                </span>
+                            </span>
+                            <span id="morecolorscontainer">
+                            </span>
+                            <span class="colorboxheader">
+                                <span class="spanlink" onclick="reloadrandomcolors()">
+                                    RELOAD
+                                </span>
+                                <span class="lightest">
+                                    COLORS ARE BEAUTIFUL
+                                </span><br /><br />
+                                <span class="spanlink" id="topofpage" onClick="scrollToPageTop()">^ GO TO TOP OF
+                                    PAGE</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="colorhistorybox">
+                    <span class="clear topofpage2" onClick="scrollToPageTop()">TOP OF<br />PAGE</span>
+                    <span class="clear reloadrandoms" onClick="reloadrandomcolors()">RELOAD<br />RANDOMS</span>
+                    <span class="clear" onClick="clearhistorybox()">CLEAR</span>
+                    <div class="colorhistorybox2"></div>
+                </div>
+                <script>
+                    displayneutrals();
+                    displaymorecolors();
+
+                    function clearhistorybox() {
+                        let clearbutton = `<span class="clear" onClick="clearhistorybox()">CLEAR</span>`;
+                        $(".colorhistorybox2").empty();
+                    }
+
+                    function reloadrandomcolors() {
+                        $("#morecolorscontainer").empty();
+                        displaymorecolors();
+                        //displaymorecolors();
+                    }
+
+
+
+                    function addToColorHistory(hexColor) {
+
+                        var elm = `<div class="colorhistoryelement">
+            <div class="colorhistorycircle" onClick="copyToClipboard(${hexColor})"
+         data-clipboard-text="${hexColor}"
+        style="background:${hexColor};"></div>
+        <br>
+        <span class="historycolorlabel">${hexColor}</span>
+        <span class="shades" onClick="createShades('${hexColor}')">shades</span>
+        </div>`;
+
+                        $(".colorhistorybox2").prepend(elm);
+                    }
+
+                    function showNotification(copiedString) {
+                        setCurrentColor(String(copiedString));
+                        $(".notify").fadeToggle();
+                        $(".notify").css("border-bottom-color", copiedString);
+                        $(".notify").toggleClass("active");
+                        $("#notifyType").text(`${copiedString} was copied to your clipboard`);
+                        $("#notifyType").toggleClass("success");
+
+                        setTimeout(function () {
+                            $(".notify").removeClass("active");
+                            $("#notifyType").removeClass("success");
+                            $(".notify").fadeOut();
+                        }, 2000);
+                        addToColorHistory(copiedString);
+                    }
+
+                    var clipboard = new ClipboardJS('.colorbox');
+                    var clipboard2 = new ClipboardJS('.colorhistorycircle');
+
+                    clipboard.on('success', function (e) {
+
+                        //alert("SUCCESS");
+                        showNotification(e.text);
+                        //console.info('Action:', e.action);
+                        //console.info('Text:', e.text);
+                        //console.info('Trigger:', e.trigger);
+
+                        //e.clearSelection();
+                    });
+
+                    createStarterPalette();
+                </script>
+                <div class="footerbox">
+                    © 2021 Obi Nwokogba
+                    <br />
+                    <a href="https://github.com/obi-nwokogba">
+                        Obi on Github
+                    </a>
+                    ·
+                    <a href="https://www.linkedin.com/in/obi-nwokogba/">
+                        Obi on LinkedIn
+                    </a>
+                    <br />
+                    <br />
+                    Updated on August 5, 2021<br />
+                    Coloressa Version 1.8.5
+                </div>
+            </div>
+
+            <p id="currentcolorstorage"></p>
+</body>
+
+</html>
