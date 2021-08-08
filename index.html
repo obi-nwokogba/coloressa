@@ -2,22 +2,24 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta name="keywords" content="HTML Colors, Hex, Codes, HSL, RGB, Shades, Tints, Designers, Artists, CSS">
+    <meta name="author" content="Obi Nwokogba">
+    <meta name="description" content="Free Web tutorials">
+
     <link href="normalize.css" rel="stylesheet" />
     <link href="coloressastyles.css" rel="stylesheet" />
     <link href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <script src="js/jquery-3.6.0.min.js">
-    </script>
-    <script src="coloressascripts.js">
-    </script>
-    <script src="js/clipboard.min.js">
-    </script>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="coloressascripts.js"></script>
+
     <title>
-        Coloressa - Color finder, picker, discovery, shades, tints, variants - Colors from Obi to You
+        Coloressa - Color finder, picker, discovery, shades, tints, variants - Hex Codes, HSL, RGB, CMYK Colors
     </title>
 </head>
 
@@ -35,30 +37,47 @@
             </span>
             <div class="homesection">
 
-
                 <!-- START OF CURRENT COLOR BOX -->
                 <div class="panelbox" id="currentcolorcontainer">
                     <div class="panelboxheader">
                         <div class="colorboxescontainer">
                             <span class="colorboxheader">
-                                CURRENT COLOR
+                                CURRENT COLOR &middot;
+                                <span id="currentcolorheaderdisplay"><span class="lightest">NONE</span></span>
                                 <span class="lightest">
-                                    &middot; </span>
-                                <span class="spanlink" onClick="createstarterpalettevariants()">
-                                    SHOW
-                                </span>
+                                    &middot;
+                                    <span class="spanlink" onClick="toggleCurrentColorBox()" id="currentColorToggle">
+                                        SHOW
+                                    </span></span>
                             </span>
 
-                            <div class="currentcolorrow">
-                                <div id="currentcolorrow1"></div>
-                                <div id="currentcolorrow2"></div>
-                                <div id="currentcolorrow3"></div>
-                            </div>
+                            <span id="currentColorVisibile">
+
+                                <div class="currentcolorrow">
+                                    <div id="currentcolorrow1">
+                                        <div id="currentcolorindicatorcircle"></div>
+                                    </div>
+                                    <div id="currentcolorrow2">
+                                        <span class="currentcolorboxlabel">RGB Value</span>
+                                        <span class="currentcolorboxvalue" id="currentcolorboxrgbvalue">-</span>
+                                        <span class="currentcolorboxlabel">HSL Value</span>
+                                        <span class="currentcolorboxvalue" id="currentcolorboxhslvalue">-</span>
+                                        <span class="currentcolorboxlabel">CMYK Value</span>
+                                        <span class="currentcolorboxvalue" id="currentcolorboxcmykvalue">-</span>
+                                    </div>
+
+                                    <div id="currentcolorrow3">
+                                        <span class="currentcolorboxlabel">Luminance / Brightness</span>
+                                        <span class="currentcolorboxvalue"
+                                            id="currentcolorluminancepercentvalue">-</span>
+                                        <span class="currentcolorboxvalue" id="currentcolorluminancevalue">-</span>
+                                    </div>
+                                </div>
+                            </span>
+                            <!-- THIS SPAN IS THE END OF VISIBILITY TOGGLE AREA OF CURRENT COLOR -->
                         </div>
                     </div>
                 </div>
-
-
 
                 <!-- START OF STARTER PALETTE CONTAINER -->
                 <div class="panelbox" id="startermegacontainer">
@@ -76,6 +95,7 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- START OF VARIANTS CONTAINER -->
                 <div class="panelbox" id="variantsmegacontainer">
                     <div class="panelboxheader">
@@ -157,69 +177,7 @@
                     <span class="clear" onClick="clearhistorybox()">CLEAR</span>
                     <div class="colorhistorybox2"></div>
                 </div>
-                <script>
-                    displayneutrals();
-                    displaymorecolors();
 
-                    function clearhistorybox() {
-                        let clearbutton = `<span class="clear" onClick="clearhistorybox()">CLEAR</span>`;
-                        $(".colorhistorybox2").empty();
-                    }
-
-                    function reloadrandomcolors() {
-                        $("#morecolorscontainer").empty();
-                        displaymorecolors();
-                        //displaymorecolors();
-                    }
-
-
-
-                    function addToColorHistory(hexColor) {
-
-                        var elm = `<div class="colorhistoryelement">
-            <div class="colorhistorycircle" onClick="copyToClipboard(${hexColor})"
-         data-clipboard-text="${hexColor}"
-        style="background:${hexColor};"></div>
-        <br>
-        <span class="historycolorlabel">${hexColor}</span>
-        <span class="shades" onClick="createShades('${hexColor}')">shades</span>
-        </div>`;
-
-                        $(".colorhistorybox2").prepend(elm);
-                    }
-
-                    function showNotification(copiedString) {
-                        setCurrentColor(String(copiedString));
-                        $(".notify").fadeToggle();
-                        $(".notify").css("border-bottom-color", copiedString);
-                        $(".notify").toggleClass("active");
-                        $("#notifyType").text(`${copiedString} was copied to your clipboard`);
-                        $("#notifyType").toggleClass("success");
-
-                        setTimeout(function () {
-                            $(".notify").removeClass("active");
-                            $("#notifyType").removeClass("success");
-                            $(".notify").fadeOut();
-                        }, 2000);
-                        addToColorHistory(copiedString);
-                    }
-
-                    var clipboard = new ClipboardJS('.colorbox');
-                    var clipboard2 = new ClipboardJS('.colorhistorycircle');
-
-                    clipboard.on('success', function (e) {
-
-                        //alert("SUCCESS");
-                        showNotification(e.text);
-                        //console.info('Action:', e.action);
-                        //console.info('Text:', e.text);
-                        //console.info('Trigger:', e.trigger);
-
-                        //e.clearSelection();
-                    });
-
-                    createStarterPalette();
-                </script>
                 <div class="footerbox">
                     © 2021 Obi Nwokogba
                     <br />
@@ -232,12 +190,78 @@
                     </a>
                     <br />
                     <br />
-                    Updated on August 5, 2021<br />
-                    Coloressa Version 1.8.5
+                    Updated on August 7, 2021<br />
+                    Coloressa Version 1.8.7
                 </div>
             </div>
 
             <p id="currentcolorstorage"></p>
+
+
+            <script>
+                displayneutrals();
+                displaymorecolors();
+
+                function clearhistorybox() {
+                    let clearbutton = `<span class="clear" onClick="clearhistorybox()">CLEAR</span>`;
+                    $(".colorhistorybox2").empty();
+                }
+
+                function reloadrandomcolors() {
+                    $("#morecolorscontainer").empty();
+                    displaymorecolors();
+                    //displaymorecolors();
+                }
+
+
+
+                function addToColorHistory(hexColor) {
+
+                    var elm = `<div class="colorhistoryelement">
+            <div class="colorhistorycircle" onClick="copyToClipboard(${hexColor})"
+         data-clipboard-text="${hexColor}"
+        style="background:${hexColor};"></div>
+        <br>
+        <span class="historycolorlabel">${hexColor}</span>
+        <span class="shades" onClick="createShades('${hexColor}')">shades</span>
+        </div>`;
+
+                    $(".colorhistorybox2").prepend(elm);
+                }
+
+                function showNotification(copiedString) {
+                    setCurrentColor(String(copiedString));
+                    $(".notify").fadeToggle();
+                    $(".notify").css("border-bottom-color", copiedString);
+                    $(".notify").toggleClass("active");
+                    $("#notifyType").text(`${copiedString} was copied to your clipboard`);
+                    $("#notifyType").toggleClass("success");
+
+                    setTimeout(function () {
+                        $(".notify").removeClass("active");
+                        $("#notifyType").removeClass("success");
+                        $(".notify").fadeOut();
+                    }, 2000);
+                    addToColorHistory(copiedString);
+                }
+
+                var clipboard = new ClipboardJS('.colorbox');
+                var clipboard2 = new ClipboardJS('.colorhistorycircle');
+
+                clipboard.on('success', function (e) {
+
+                    //alert("SUCCESS");
+                    showNotification(e.text);
+                    //console.info('Action:', e.action);
+                    //console.info('Text:', e.text);
+                    //console.info('Trigger:', e.trigger);
+
+                    //e.clearSelection();
+                });
+
+                createStarterPalette();
+            </script>
+
 </body>
 
 </html>

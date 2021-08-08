@@ -534,24 +534,65 @@ span.pageheader {
 
 
 /* CURRENT COLOR - STYLES */
+
+#currentColorVisibile{
+    display:block;
+}
+
+#currentcolorheaderdisplay{
+    border-top:solid 4px transparent;
+}
 .currentcolorrow {
     display: flex;
     flex-direction: row;
 }
 
-#currentcolorrow1 {}
+#currentcolorrow1 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-right: 13px;
+}
 
-#currentcolorrow2 {}
+#currentcolorrow2 {
+    border-left: dotted 1px #b7b7b7;
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    padding-left: 13px;
+    padding-left: 13px;
+}
 
-#currentcolorrow3 {}
+#currentcolorrow3 {
+    border-left: dotted 1px #b7b7b7;
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    padding-left: 13px;
+    padding-left: 13px;
+}
 
 #currentcolorindicatorcircle {
-    width: 180px;
-    height: 180px;
-    max-width: 180px;
-    max-height: 180px;
-    border-radius: 90px;
-    border:none;
+    width: 160px;
+    height: 160px;
+    max-width: 160px;
+    max-height: 160px;
+    border-radius: 80px;
+    border: none;
+}
+
+.currentcolorboxlabel {
+    font-size: 0.6em;
+    font-weight: 400;
+    color: #b7b7b7;
+    border-bottom: dotted 1px #b7b7b7;
+}
+
+.currentcolorboxvalue {
+    font-size: 0.8em;
+    font-weight: 400;
+    color: #2c2c2c;
+    margin-bottom: 10px;
 }
 
 /* FIRST BREAKPOINT */

@@ -66,6 +66,98 @@ function hexToRgb2(hex) {
     } : null;
 }
 
+
+function HEXtoHSL(hex) {
+    hex = hex.replace(/#/g, '');
+    if (hex.length === 3) {
+        hex = hex.split('').map(function (hex) {
+            return hex + hex;
+        }).join('');
+    }
+    var result = /^([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})[\da-z]{0,0}$/i.exec(hex);
+    if (!result) {
+        return null;
+    }
+    var r = parseInt(result[1], 16);
+    var g = parseInt(result[2], 16);
+    var b = parseInt(result[3], 16);
+    r /= 255, g /= 255, b /= 255;
+    var max = Math.max(r, g, b),
+        min = Math.min(r, g, b);
+    var h, s, l = (max + min) / 2;
+    if (max == min) {
+        h = s = 0;
+    } else {
+        var d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch (max) {
+            case r:
+                h = (g - b) / d + (g < b ? 6 : 0);
+                break;
+            case g:
+                h = (b - r) / d + 2;
+                break;
+            case b:
+                h = (r - g) / d + 4;
+                break;
+        }
+        h /= 6;
+    }
+    s = s * 100;
+    s = Math.round(s);
+    l = l * 100;
+    l = Math.round(l);
+    h = Math.round(360 * h);
+
+    return {
+        h: h,
+        s: s,
+        l: l
+    };
+}
+
+
+function hexToCMYK(hex) {
+    var computedC = 0;
+    var computedM = 0;
+    var computedY = 0;
+    var computedK = 0;
+
+    hex = (hex.charAt(0) == "#") ? hex.substring(1, 7) : hex;
+
+    if (hex.length != 6) {
+        alert('Invalid length of the input hex value!');
+        return;
+    }
+    if (/[0-9a-f]{6}/i.test(hex) != true) {
+        alert('Invalid digits in the input hex value!');
+        return;
+    }
+
+    var r = parseInt(hex.substring(0, 2), 16);
+    var g = parseInt(hex.substring(2, 4), 16);
+    var b = parseInt(hex.substring(4, 6), 16);
+
+    // BLACK
+    if (r == 0 && g == 0 && b == 0) {
+        computedK = 1;
+        return [0, 0, 0, 1];
+    }
+
+    computedC = 1 - (r / 255);
+    computedM = 1 - (g / 255);
+    computedY = 1 - (b / 255);
+
+    var minCMY = Math.min(computedC, Math.min(computedM, computedY));
+
+    computedC = (computedC - minCMY) / (1 - minCMY);
+    computedM = (computedM - minCMY) / (1 - minCMY);
+    computedY = (computedY - minCMY) / (1 - minCMY);
+    computedK = minCMY;
+
+    return [computedC, computedM, computedY, computedK];
+}
+
 function randomInteger(min, max) { // min and max included 
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
@@ -120,12 +212,67 @@ function RGBToHex(r, g, b) {
     return "#" + r + g + b;
 }
 
+function percievedBrightness(r, g, b) {
+    //alert(Math.sqrt(0.299 * Math.pow(r, 2) + 0.587 * Math.pow(g, 2) + 0.114 * Math.pow(b, 2)));
+    return parseInt(Math.sqrt(0.299 * Math.pow(r, 2) + 0.587 * Math.pow(g, 2) + 0.114 * Math.pow(b, 2)));
+}
+
+
 // Current color's hex code is stored in an invisible div at the bottom of the page
+/*
+IDs of relevant DOM elements to change when a new color is selected
+
+currentcolorheaderdisplay - big text at top of the panel. Only hex code placed here.
+TODO CURRENT - August 6 2021
+*/
 function setCurrentColor(colorHexCode) {
-    //alert(`${colorHexCode} Current color selected`);
-    $("#currentcolorstorage").empty();
-    $("#currentcolorstorage").text(`${colorHexcode}`);
-    //$("#currentcolorindicatorcircle").css("background-color", colorHexCode);
+
+    let hexCodeString = String(colorHexCode);
+
+    // Empty Current Containers of possible previous value
+    $('#currentcolorstorage').empty();
+    $('#currentcolorstorage').text(hexCodeString);
+
+    $('#currentcolorstorage').empty();
+    $('#currentcolorheaderdisplay').text(hexCodeString);
+    $('#currentcolorheaderdisplay').css("border-top-color", hexCodeString);
+
+    let rValue = hexToR(colorHexCode);
+    let gValue = hexToG(colorHexCode);
+    let bValue = hexToB(colorHexCode);
+    let cmykArray = hexToCMYK(colorHexCode);
+
+    $("#currentcolorindicatorcircle").css("background-color", hexCodeString);
+
+    let rgbCompositeString = `rgb(${rValue},${gValue},${bValue})`;
+    $('#currentcolorboxrgbvalue').empty();
+    $('#currentcolorboxrgbvalue').text(rgbCompositeString);
+
+    let hslObject = HEXtoHSL(hexCodeString)
+    $('#currentcolorboxhslvalue').empty();
+    $('#currentcolorboxhslvalue').
+        html(`hsl(${hslObject.h}, ${hslObject.s}%, ${hslObject.l}%)`);
+
+    $('#currentcolorboxcmykvalue').empty();
+    $('#currentcolorboxcmykvalue').
+        text(`${cmykArray[0].toFixed(4)}, ${cmykArray[1].toFixed(4)}, ${cmykArray[2].toFixed(4)}, ${cmykArray[3].toFixed(4)}`);
+
+    $('#currentcolorluminancevalue').empty();
+    currentcolorluminancepercentvalue
+    $('#currentcolorluminancepercentvalue').text(String(parseInt(percievedBrightness(rValue, gValue, bValue) / 255 * 100)) + "%");
+    $('#currentcolorluminancevalue').text(String(percievedBrightness(rValue, gValue, bValue)) + " / 255");
+}
+
+function toggleCurrentColorBox() {
+
+    if ($('#currentColorVisibile').is(':visible')) {
+        $('#currentColorToggle').text("SHOW");
+        $('#currentColorVisibile').hide("slow");
+    }
+    if ($('#currentColorVisibile').is(':hidden')) {
+        $('#currentColorToggle').text("HIDE");
+        $('#currentColorVisibile').show("slow");
+    } 
 }
 
 function generateVariant(hexColor) {
@@ -478,7 +625,6 @@ function createStarterPalette() {
     }
 }
 
-
 function createstarterpalettevariants() {
 
     let newVariant = "";
@@ -500,10 +646,15 @@ function createstarterpalettevariants() {
 }
 
 
+$(document).ready(function () {
+    // HIDE the CURRENT COLOR PANEL, since by default there is no current color when page loads
+    $('#currentColorVisibile').toggle("slow");
+});
+
 
 /* NOTES, TODOs
 
 
 
-Last improved on July 31, 2021
+
 */
