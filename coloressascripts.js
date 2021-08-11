@@ -70,7 +70,7 @@ let starterPalette = ["#a91413",
     "#fc65a5",
     "#ffc0cb",
     "#ff69b4",
-    
+
     "#773733",
     "#672154",
     "#000000",
@@ -86,7 +86,6 @@ function hexToRgb2(hex) {
         b: parseInt(result[3], 16)
     } : null;
 }
-
 
 function HEXtoHSL(hex) {
     hex = hex.replace(/#/g, '');
@@ -136,7 +135,6 @@ function HEXtoHSL(hex) {
         l: l
     };
 }
-
 
 function hexToCMYK(hex) {
     var computedC = 0;
@@ -293,7 +291,7 @@ function toggleCurrentColorBox() {
     if ($('#currentColorVisibile').is(':hidden')) {
         $('#currentColorToggle').text("HIDE");
         $('#currentColorVisibile').show("slow");
-    } 
+    }
 }
 
 function generateVariant(hexColor) {
@@ -449,9 +447,9 @@ function displayneutrals() {
 
 function displaymorecolors() {
     const factor = [-7, -5, -3, 0, 2, 4, 6, 8, 10];
-    let currentR = randomInteger(40, 225);
-    let currentG = randomInteger(40, 225);
-    let currentB = randomInteger(40, 225);
+    let currentR = randomInteger(0, 255);
+    let currentG = randomInteger(0, 225);
+    let currentB = randomInteger(0, 255);
     let randomRFactor = randomInteger(-5, 5);
     let randomGFactor = randomInteger(-5, 5);
     let randomBFactor = randomInteger(-5, 5);
@@ -459,75 +457,50 @@ function displaymorecolors() {
     let currentColorInHex;
 
     // FIRST ITERATION
-    for (let i = 0; i < 400; i++) {
-        if (randomInteger(0, 10) == 1) {
-            let j = 0;
-            while (j < 20) {
-                currentR = currentR + j;
-                currentG = currentG + j;
-                currentB = currentB + j;
-                currentColorInHex = rgbToHex(currentR, currentG, currentB);
-                var elm = `<div class="colorbox" onClick="copyToClipboard(${currentColorInHex})" 
-         data-clipboard-text="${currentColorInHex}"
-        style="background:${currentColorInHex};"> ${currentColorInHex} </div>`;
-                $(elm).appendTo($("#morecolorscontainer"));
-                j = j + 3;
-            }
-        }
-        // End of IF conditional to lighten color 
-        else {
-            currentColorInHex = rgbToHex(currentR, currentG, currentB);
+    for (let i = 0; i < 100; i++) {
+
+        currentColorInHex = rgbToHex(
+            randomInteger(0, 255),
+            randomInteger(0, 255),
+            randomInteger(0, 255));
+
+        let j = 0;
+        while (j < 8) {
+
             var elm = `<div class="colorbox" onClick="copyToClipboard(${currentColorInHex})" 
          data-clipboard-text="${currentColorInHex}"
         style="background:${currentColorInHex};"> ${currentColorInHex} </div>`;
+
             $(elm).appendTo($("#morecolorscontainer"));
-            currentR = currentR + randomRFactor;
-            currentG = currentG - randomGFactor;
-            currentB = currentB + randomBFactor;
-        }
-        if (currentR <= 0) {
-            currentR = 0;
-            if (randomInteger(0, 2) == 1) {
-                currentR = randomInteger(40, 220);
-                randomRFactor = factor[Math.floor(Math.random() * factor.length)];
+            j++;
+
+            currentColorInHex = shadeColor(currentColorInHex, 16);
+
+            if(currentColorInHex == "ffffff"){
+                j = 9;
             }
-        }
-        if (currentG <= 0) {
-            currentG = 0;
-            if (randomInteger(0, 2) == 1) {
-                currentG = randomInteger(40, 220);
-                randomGFactor = factor[Math.floor(Math.random() * factor.length)];
+
+
+            if (currentR <= 0) {
+                currentR = 0;
             }
-        }
-        if (currentB <= 0) {
-            currentB = 0;
-            if (randomInteger(0, 2) == 1) {
-                currentB = randomInteger(40, 220);
-                randomBFactor = factor[Math.floor(Math.random() * factor.length)];
+            if (currentG <= 0) {
+                currentG = 0;
             }
-        }
-        if (currentR >= 255) {
-            currentR = 255;
-            if (randomInteger(0, 2) == 1) {
-                currentR = randomInteger(40, 220);
-                randomRFactor = factor[Math.floor(Math.random() * factor.length)];
+            if (currentB <= 0) {
+                currentB = 0;
             }
-        }
-        if (currentG >= 255) {
-            currentG = 255;
-            if (randomInteger(0, 2) == 1) {
-                currentG = randomInteger(40, 220);
-                randomGFactor = factor[Math.floor(Math.random() * factor.length)];
+            if (currentR >= 255) {
+                currentR = 255;
             }
-        }
-        if (currentB >= 255) {
-            currentB = 255;
-            if (randomInteger(0, 2) == 1) {
-                currentB = randomInteger(40, 220);
-                randomBFactor = factor[Math.floor(Math.random() * factor.length)];
+            if (currentG >= 255) {
+                currentG = 255;
             }
-        }
-    }
+            if (currentB >= 255) {
+                currentB = 255;
+            }
+        } // End of While loop
+    } // End of for loop
 }
 
 function createShades(hexColor) {
