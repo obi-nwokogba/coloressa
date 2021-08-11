@@ -2,7 +2,7 @@
     --darkest-color: #05222F;
     --middark-color: #1777A4;
     --brand-blue: #1475e4;
-    --brand-purple: #c71ae9;
+    --coloressa-purple: #c71ae9;
     --brand-darkbrown: #191D21;
     --brand-midbrown: #394145;
     --midlight-color: #363636;
@@ -416,6 +416,12 @@ span.pageheader {
     font-weight: 400;
 }
 
+.sidebuttonbox{
+
+}
+
+
+
 .clear {
     width: 75px;
     padding: 7px;
@@ -456,14 +462,34 @@ span.pageheader {
     transition: 0.17s;
 }
 
+
+/* SIDE PANEL STYLES */
+
+.sidepanellink{
+    width: 90px;
+    padding: 7px;
+    font-size: 13px;
+    cursor: pointer;
+    border-top: solid 3px #e1e1e1;
+    transition: 0.13s;
+    font-weight: 500;
+    background-color: #f3f3f3;
+    min-height:30px;
+    display:block;
+}
+
+.sidepanellink:hover{
+    color: var(--coloressa-purple);
+}
+
 .colorhistorycircle {
-    height: 38px;
-    width: 38px;
+    height: 42px;
+    width: 42px;
     border-radius: 50%;
-    min-height: 38px;
-    min-width: 38px;
-    max-width: 38px;
-    max-height: 38px;
+    min-height: 42px;
+    min-width: 42px;
+    max-width: 42px;
+    max-height: 42px;
     margin-bottom: -18px;
     display: block;
 }
@@ -479,14 +505,14 @@ span.pageheader {
     padding-left: 7px;
 }
 
-.colorhistorybox {
+.sidepanelcontainer {
     position: fixed;
     bottom: 0;
     left: 0;
     border: solid 3px #eaeaea;
     border-left: none;
-    height: 350px;
-    width: 85px;
+    height: 500px;
+    width: 95px;
     background-color: #ededed;
     background-color: #f3f3f3;
     border-radius: 0px 0px 0px 0px;

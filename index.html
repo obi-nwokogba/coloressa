@@ -131,7 +131,7 @@
                     </div>
                 </div>
                 <!-- START OF GRAYS CONTAINER -->
-                <div class="panelbox">
+                <div class="panelbox" id="grays">
                     <div class="panelboxheader">
                         <div class="colorboxescontainer" id="neutralscontainer">
                             <span class="colorboxheader">
@@ -171,10 +171,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="colorhistorybox">
-                    <span class="clear topofpage2" onClick="scrollToPageTop()">TOP OF<br />PAGE</span>
+                <div class="sidepanelcontainer">
+                    <!-- <span class="clear topofpage2" onClick="scrollToPageTop()">TOP OF<br />PAGE</span>
                     <span class="clear reloadrandoms" onClick="reloadrandomcolors()">RELOAD<br />RANDOMS</span>
-                    <span class="clear" onClick="clearhistorybox()">CLEAR</span>
+                    <span class="clear" onClick="clearhistorybox()">CLEAR</span> -->
+
+                    <div class="sidebuttonbox">
+                        <span class="sidepanellink" onClick="scrollToPageTop()">Top of Page</span>
+                        <span class="sidepanellink" onClick="reloadrandomcolors()">Current Color</span>
+                        <span class="sidepanellink" onClick="reloadrandomcolors()">Starter Palette</span>
+                        <span class="sidepanellink" onClick="goToGrays()">Grays</span>
+                        <span class="sidepanellink" onClick="clearhistorybox()">Reload Random Colors</span>
+                    </div>
+
                     <div class="colorhistorybox2"></div>
                 </div>
 
@@ -190,8 +199,8 @@
                     </a>
                     <br />
                     <br />
-                    Updated on August 9, 2021<br />
-                    Coloressa Version 1.8.9
+                    Updated on August 10, 2021<br />
+                    Coloressa Version 1.8.10
                 </div>
             </div>
 
