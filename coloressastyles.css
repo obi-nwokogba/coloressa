@@ -2,7 +2,7 @@
     --darkest-color: #05222F;
     --middark-color: #1777A4;
     --brand-blue: #1475e4;
-    --coloressa-purple: #c71ae9;
+    --coloressa-purple: #d94dd3;
     --brand-darkbrown: #191D21;
     --brand-midbrown: #394145;
     --midlight-color: #363636;
@@ -36,6 +36,29 @@ body {
     text-align: left;
     margin: auto;
     font-size: 20px;
+}
+
+/* SCROLLBAR STYLING */
+/* Works on Firefox */
+* {
+    scrollbar-width: 23px;
+    scrollbar-color: var(--coloressa-purple) white;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 23px;
+    border-right: solid 2px black;
+}
+
+*::-webkit-scrollbar-track {
+    background: white;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--coloressa-purple);
+    border-radius: 20px;
+    border: 1px solid var(--coloressa-purple);
 }
 
 .siteheadertext {
@@ -119,7 +142,7 @@ searchelement {
     color: #b7b7b7;
 }
 
-.footerbox>a:hover {
+.footerbox > a:hover {
     color: #c71ae9;
     border-bottom-color: #c71ae9;
 }
@@ -143,20 +166,21 @@ ul {
     padding: 0;
 }
 
-nav>a {}
+nav > a {
+}
 
 .navbar {
     display: flex;
     justify-content: flex-start;
 }
 
-li>a {
+li > a {
     text-decoration: none;
     transition: 0.23s;
     padding-right: 15px;
 }
 
-li>a:hover {
+li > a:hover {
     border-bottom: solid 3px;
     font-weight: 500;
     color: var(--brand-blue);
@@ -416,10 +440,8 @@ span.pageheader {
     font-weight: 400;
 }
 
-.sidebuttonbox{
-
+.sidebuttonbox {
 }
-
 
 
 .clear {
@@ -465,21 +487,23 @@ span.pageheader {
 
 /* SIDE PANEL STYLES */
 
-.sidepanellink{
+.sidepanellink {
     width: 90px;
     padding: 7px;
     font-size: 13px;
     cursor: pointer;
-    border-top: solid 3px #e1e1e1;
+    border-bottom: solid 3px #e1e1e1;
     transition: 0.13s;
     font-weight: 500;
     background-color: #f3f3f3;
-    min-height:30px;
-    display:block;
+    min-height: 30px;
+    display: block;
 }
 
-.sidepanellink:hover{
+.sidepanellink:hover {
     color: var(--coloressa-purple);
+    border-bottom: solid 3px var(--coloressa-purple);
+    background-color: rgba(255, 255, 255, 0.252);
 }
 
 .colorhistorycircle {
@@ -490,7 +514,7 @@ span.pageheader {
     min-width: 42px;
     max-width: 42px;
     max-height: 42px;
-    margin-bottom: -18px;
+    margin-bottom: 7px;
     display: block;
 }
 
@@ -511,12 +535,14 @@ span.pageheader {
     left: 0;
     border: solid 3px #eaeaea;
     border-left: none;
-    height: 500px;
+    height: 600px;
     width: 95px;
     background-color: #ededed;
     background-color: #f3f3f3;
     border-radius: 0px 0px 0px 0px;
     padding: 0px;
+    padding-top: 10px;
+    border-radius: 0px 13px 0px 0px;
     display: flex;
     flex-direction: column;
 }
@@ -524,17 +550,37 @@ span.pageheader {
 .colorhistorybox2 {
     border: none;
     margin: 0;
-    height: 340px;
-    width: 80px;
+    height: 360px;
+    width: 90px;
     background-color: #f3f3f3;
     border-radius: 0px 0px 0px 0px;
     display: flex;
     flex-direction: column;
     padding: 0px;
+    padding-bottom: 40px;
     font-size: 14px;
     overflow: scroll;
     text-align: center;
     background-color: #f3f3f3;
+    overflow-x: hidden;
+    scrollbar-width: 12px;
+    scrollbar-color: var(--coloressa-purple) white;
+}
+
+/* Works on Chrome, Edge, and Safari */
+.colorhistorybox2::-webkit-scrollbar {
+    width: 12px;
+    border-right: solid 2px black;
+}
+
+.colorhistorybox2::-webkit-scrollbar-track {
+    background: white;
+}
+
+.colorhistorybox2::-webkit-scrollbar-thumb {
+    background-color: var(--coloressa-purple);
+    border-radius: 8px;
+    border: 1px solid var(--coloressa-purple);
 }
 
 .container-lg {
@@ -551,23 +597,25 @@ span.pageheader {
 
 .historycolorlabel {
     font-size: 11px;
-    font-weight: 500;
+    font-weight: 600;
     text-align: center;
     display: block;
     padding: 0px;
     margin-bottom: 6px;
+    margin-top: 7px;
 }
 
 
 /* CURRENT COLOR - STYLES */
 
-#currentColorVisibile{
-    display:block;
+#currentColorVisibile {
+    display: block;
 }
 
-#currentcolorheaderdisplay{
-    border-top:solid 4px transparent;
+#currentcolorheaderdisplay {
+    border-top: solid 4px transparent;
 }
+
 .currentcolorrow {
     display: flex;
     flex-direction: row;
@@ -700,13 +748,17 @@ span.pageheader {
 }
 
 /* THIRD BREAKPOINT */
-@media all and (max-width: 800px) {}
+@media all and (max-width: 800px) {
+}
 
 /* FOURTH BREAKPOINT */
-@media all and (max-width: 1000px) {}
+@media all and (max-width: 1000px) {
+}
 
 /* FIFTH BREAKPOINT */
-@media all and (max-width: 1300px) {}
+@media all and (max-width: 1300px) {
+}
 
 /* SIXTH BREAKPOINT */
-@media all and (max-width: 1700px) {}
+@media all and (max-width: 1700px) {
+}

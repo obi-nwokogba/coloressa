@@ -2,17 +2,17 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta name="keywords" content="HTML Colors, Hex, Codes, HSL, RGB, Shades, Tints, Designers, Artists, CSS">
     <meta name="author" content="Obi Nwokogba">
     <meta name="description" content="Free Web tutorials">
 
-    <link href="normalize.css" rel="stylesheet" />
-    <link href="coloressastyles.css" rel="stylesheet" />
-    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="normalize.css" rel="stylesheet"/>
+    <link href="coloressastyles.css" rel="stylesheet"/>
+    <link href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+          rel="stylesheet">
 
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/clipboard.min.js"></script>
@@ -24,23 +24,23 @@
 </head>
 
 <body>
-    <div class="outermostcontainer">
-        <header>
-        </header>
-        <div class="notify">
+<div class="outermostcontainer">
+    <header>
+    </header>
+    <div class="notify">
             <span class="" id="notifyType">
             </span>
-        </div>
-        <div class="container-lg">
+    </div>
+    <div class="container-lg">
             <span class="pageheader">
                 coloressa
             </span>
-            <div class="homesection">
+        <div class="homesection">
 
-                <!-- START OF CURRENT COLOR BOX -->
-                <div class="panelbox" id="currentcolorcontainer">
-                    <div class="panelboxheader">
-                        <div class="colorboxescontainer">
+            <!-- START OF CURRENT COLOR BOX -->
+            <div class="panelbox" id="currentcolorcontainer">
+                <div class="panelboxheader">
+                    <div class="colorboxescontainer">
                             <span class="colorboxheader">
                                 CURRENT COLOR &middot;
                                 <span id="currentcolorheaderdisplay"><span class="lightest">NONE</span></span>
@@ -51,7 +51,7 @@
                                     </span></span>
                             </span>
 
-                            <span id="currentColorVisibile">
+                        <span id="currentColorVisibile">
 
                                 <div class="currentcolorrow">
                                     <div id="currentcolorrow1">
@@ -69,20 +69,20 @@
                                     <div id="currentcolorrow3">
                                         <span class="currentcolorboxlabel">Luminance / Brightness</span>
                                         <span class="currentcolorboxvalue"
-                                            id="currentcolorluminancepercentvalue">-</span>
+                                              id="currentcolorluminancepercentvalue">-</span>
                                         <span class="currentcolorboxvalue" id="currentcolorluminancevalue">-</span>
                                     </div>
                                 </div>
                             </span>
-                            <!-- THIS SPAN IS THE END OF VISIBILITY TOGGLE AREA OF CURRENT COLOR -->
-                        </div>
+                        <!-- THIS SPAN IS THE END OF VISIBILITY TOGGLE AREA OF CURRENT COLOR -->
                     </div>
                 </div>
+            </div>
 
-                <!-- START OF STARTER PALETTE CONTAINER -->
-                <div class="panelbox" id="startermegacontainer">
-                    <div class="panelboxheader">
-                        <div class="colorboxescontainer">
+            <!-- START OF STARTER PALETTE CONTAINER -->
+            <div class="panelbox" id="startermegacontainer">
+                <div class="panelboxheader">
+                    <div class="colorboxescontainer">
                             <span class="colorboxheader">
                                 STARTER PALETTE
                                 <span class="lightest">
@@ -91,15 +91,15 @@
                                     CREATE VARIANTS
                                 </span>
                             </span>
-                            <span id="startercontainer" class="startercontainer"></span>
-                        </div>
+                        <span id="startercontainer" class="startercontainer"></span>
                     </div>
                 </div>
+            </div>
 
-                <!-- START OF VARIANTS CONTAINER -->
-                <div class="panelbox" id="variantsmegacontainer">
-                    <div class="panelboxheader">
-                        <div class="colorboxescontainer">
+            <!-- START OF VARIANTS CONTAINER -->
+            <div class="panelbox" id="variantsmegacontainer">
+                <div class="panelboxheader">
+                    <div class="colorboxescontainer">
                             <span class="colorboxheader">
                                 <span id="variantshexlabel"></span>
                                 <span class="lightest">
@@ -109,44 +109,45 @@
                                     RELOAD VARIANTS
                                 </span>
                             </span>
-                            <span id="variantscontainer" class="variantscontainer"></span>
-                        </div>
+                        <span id="variantscontainer" class="variantscontainer"></span>
                     </div>
                 </div>
-                <!-- START OF SHADES AND TINTS CONTAINER -->
-                <div class="panelbox" id="shadesmegacontainer">
-                    <div class="panelboxheader">
-                        <div class="colorboxescontainer">
+            </div>
+            <!-- START OF SHADES AND TINTS CONTAINER -->
+            <div class="panelbox" id="shadesmegacontainer">
+                <div class="panelboxheader">
+                    <div class="colorboxescontainer">
                             <span class="colorboxheader">
                                 <span id="shadeshexlabel"></span>
                                 <span class="lightest">
-                                    &middot; SHADES and TINTS
+                                    &middot; SHADES + TINTS
                                     &middot; </span>
                                 <span class="spanlink" onClick="createVariants()">
                                     SEE VARIANTS
                                 </span>
                             </span>
-                            <span id="shadescontainer" class="shadescontainer"></span>
-                        </div>
+                        <span id="shadescontainer" class="shadescontainer"></span>
                     </div>
                 </div>
-                <!-- START OF GRAYS CONTAINER -->
-                <div class="panelbox" id="grays">
-                    <div class="panelboxheader">
-                        <div class="colorboxescontainer" id="neutralscontainer">
+            </div>
+            <!-- START OF GRAYS CONTAINER -->
+            <div class="panelbox" id="grays">
+                <div class="panelboxheader">
+                    <div class="colorboxescontainer" id="neutralscontainer">
                             <span class="colorboxheader">
                                 GRAYS
                                 <span class="lightest">
                                     &middot; pick one! BEAUTIFUL!
                                 </span>
                             </span>
-                        </div>
                     </div>
                 </div>
-                <!-- END OF GRAYS CONTAINER -->
-                <div class="panelbox">
-                    <div class="panelboxheader">
-                        <div class="colorboxescontainer">
+            </div>
+            <!-- END OF GRAYS CONTAINER -->
+            <!-- START OF RANDOM COLORS CONTAINER -->
+            <div class="panelbox" id="randomcolors">
+                <div class="panelboxheader">
+                    <div class="colorboxescontainer">
                             <span class="colorboxheader">
                                 MORE COLORS &middot;
                                 <span class="lightest">
@@ -156,139 +157,147 @@
                                     RELOAD
                                 </span>
                             </span>
-                            <span id="morecolorscontainer">
+                        <span id="morecolorscontainer">
                             </span>
-                            <span class="colorboxheader">
+                        <span class="colorboxheader">
                                 <span class="spanlink" onclick="reloadrandomcolors()">
                                     RELOAD
                                 </span>
                                 <span class="lightest">
                                     COLORS ARE BEAUTIFUL
-                                </span><br /><br />
+                                </span><br/><br/>
                                 <span class="spanlink" id="topofpage" onClick="scrollToPageTop()">^ GO TO TOP OF
                                     PAGE</span>
                             </span>
-                        </div>
                     </div>
-                </div>
-                <div class="sidepanelcontainer">
-                    <!-- <span class="clear topofpage2" onClick="scrollToPageTop()">TOP OF<br />PAGE</span>
-                    <span class="clear reloadrandoms" onClick="reloadrandomcolors()">RELOAD<br />RANDOMS</span>
-                    <span class="clear" onClick="clearhistorybox()">CLEAR</span> -->
-
-                    <div class="sidebuttonbox">
-                        <span class="sidepanellink" onClick="scrollToPageTop()">Top of Page</span>
-                        <span class="sidepanellink" onClick="reloadrandomcolors()">Current Color</span>
-                        <span class="sidepanellink" onClick="reloadrandomcolors()">Starter Palette</span>
-                        <span class="sidepanellink" onClick="goToGrays()">Grays</span>
-                        <span class="sidepanellink" onClick="clearhistorybox()">Reload Random Colors</span>
-                    </div>
-
-                    <div class="colorhistorybox2"></div>
-                </div>
-
-                <div class="footerbox">
-                    © 2021 Obi Nwokogba
-                    <br />
-                    <a href="https://github.com/obi-nwokogba">
-                        Obi on Github
-                    </a>
-                    ·
-                    <a href="https://www.linkedin.com/in/obi-nwokogba/">
-                        Obi on LinkedIn
-                    </a>
-                    <br />
-                    <br />
-                    Updated on August 10, 2021<br />
-                    Coloressa Version 1.8.10
                 </div>
             </div>
+            <div class="sidepanelcontainer">
+                <!-- <span class="clear topofpage2" onClick="scrollToPageTop()">TOP OF<br />PAGE</span>
+                <span class="clear reloadrandoms" onClick="reloadrandomcolors()">RELOAD<br />RANDOMS</span>
+                <span class="clear" onClick="clearhistorybox()">CLEAR</span> -->
 
-            <p id="currentcolorstorage"></p>
+                <div class="sidebuttonbox">
+                    <span class="sidepanellink" onClick="scrollToPageTop()">Top of Page</span>
+                    <span class="sidepanellink" onClick="goToCurrentColor()">Current Color</span>
+                    <span class="sidepanellink" onClick="goToStarterPalette()">Starter Palette</span>
+                    <span class="sidepanellink" onClick="goToGrays()">Grays</span>
+                    <span class="sidepanellink" onClick="goToRandomColors()">Random Colors</span>
+                    <span class="sidepanellink" onClick="reloadrandomcolors()">Reload Random Colors</span>
+                    <span class="sidepanellink" onClick="clearhistorybox()">Clear Color History</span>
 
 
-            <script>
-                displayneutrals();
+                </div>
+
+                <div class="colorhistorybox2"></div>
+            </div>
+
+            <div class="footerbox">
+                © 2021 Obi Nwokogba
+                <br/>
+                <a href="https://github.com/obi-nwokogba">
+                    Obi on Github
+                </a>
+                ·
+                <a href="https://www.linkedin.com/in/obi-nwokogba/">
+                    Obi on LinkedIn
+                </a>
+                <br/>
+                <a href="https://github.com/obi-nwokogba/coloressa">
+                    Coloressa on Github
+                </a>
+                <br/><br/>
+                Updated on August 11, 2021<br/>
+                Coloressa Version 1.8.11
+            </div>
+        </div>
+
+        <p id="currentcolorstorage"></p>
+
+
+        <script>
+            displayneutrals();
+            displaymorecolors();
+
+            function clearhistorybox() {
+                let clearbutton = `<span class="clear" onClick="clearhistorybox()">CLEAR</span>`;
+                $(".colorhistorybox2").empty();
+            }
+
+            function reloadrandomcolors() {
+                $("#morecolorscontainer").empty();
                 displaymorecolors();
-
-                function clearhistorybox() {
-                    let clearbutton = `<span class="clear" onClick="clearhistorybox()">CLEAR</span>`;
-                    $(".colorhistorybox2").empty();
-                }
-
-                function reloadrandomcolors() {
-                    $("#morecolorscontainer").empty();
-                    displaymorecolors();
-                    //displaymorecolors();
-                }
+                //displaymorecolors();
+            }
 
 
+            function addToColorHistory(hexColor) {
 
-                function addToColorHistory(hexColor) {
-
-                    var elm = `<div class="colorhistoryelement">
+                var elm = `<div class="colorhistoryelement">
             <div class="colorhistorycircle" onClick="copyToClipboard(${hexColor})"
          data-clipboard-text="${hexColor}"
         style="background:${hexColor};"></div>
-        <br>
+        
         <span class="historycolorlabel">${hexColor}</span>
         <span class="shades" onClick="createShades('${hexColor}')">shades</span>
         </div>`;
 
-                    $(".colorhistorybox2").prepend(elm);
-                }
+                $(".colorhistorybox2").prepend(elm);
+            }
 
-                function showNotification(copiedString) {
-                    setCurrentColor(String(copiedString));
-                    $(".notify").fadeToggle();
-                    $(".notify").css("border-bottom-color", copiedString);
-                    $(".notify").toggleClass("active");
-                    $("#notifyType").text(`${copiedString} was copied to your clipboard`);
-                    $("#notifyType").toggleClass("success");
+            function showNotification(copiedString) {
+                setCurrentColor(String(copiedString));
+                $(".notify").fadeToggle();
+                $(".notify").css("border-bottom-color", copiedString);
+                $(".notify").toggleClass("active");
+                $("#notifyType").text(`${copiedString} was copied to your clipboard`);
+                $("#notifyType").toggleClass("success");
 
-                    setTimeout(function () {
-                        $(".notify").removeClass("active");
-                        $("#notifyType").removeClass("success");
-                        $(".notify").fadeOut();
-                    }, 2000);
-                    addToColorHistory(copiedString);
-                }
+                setTimeout(function () {
+                    $(".notify").removeClass("active");
+                    $("#notifyType").removeClass("success");
+                    $(".notify").fadeOut();
+                }, 2000);
+                addToColorHistory(copiedString);
+            }
 
-                var clipboard = new ClipboardJS('.colorbox');
-                var clipboard2 = new ClipboardJS('.colorhistorycircle');
+            var clipboard = new ClipboardJS('.colorbox');
+            var clipboard2 = new ClipboardJS('.colorhistorycircle');
 
-                clipboard.on('success', function (e) {
+            clipboard.on('success', function (e) {
 
-                    //alert("SUCCESS");
-                    showNotification(e.text);
-                    //console.info('Action:', e.action);
-                    //console.info('Text:', e.text);
-                    //console.info('Trigger:', e.trigger);
+                //alert("SUCCESS");
+                showNotification(e.text);
+                //console.info('Action:', e.action);
+                //console.info('Text:', e.text);
+                //console.info('Trigger:', e.trigger);
 
-                    //e.clearSelection();
-                });
+                //e.clearSelection();
+            });
 
-                createStarterPalette();
-            </script>
+            createStarterPalette();
+        </script>
 
 
-            <!-- Default Statcounter code for Coloressa
+        <!-- Default Statcounter code for Coloressa
 https://coloressa.com -->
-<script type="text/javascript">
-var sc_project=12568884; 
-var sc_invisible=1; 
-var sc_security="10808968"; 
-</script>
-<script type="text/javascript"
-src="https://www.statcounter.com/counter/counter.js"
-async></script>
-<noscript><div class="statcounter"><a title="Web Analytics
+        <script type="text/javascript">
+            var sc_project = 12568884;
+            var sc_invisible = 1;
+            var sc_security = "10808968";
+        </script>
+        <script type="text/javascript"
+                src="https://www.statcounter.com/counter/counter.js"
+                async></script>
+        <noscript>
+            <div class="statcounter"><a title="Web Analytics
 Made Easy - StatCounter" href="https://statcounter.com/"
-target="_blank"><img class="statcounter"
-src="https://c.statcounter.com/12568884/0/10808968/1/"
-alt="Web Analytics Made Easy - StatCounter"
-referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
-<!-- End of Statcounter Code -->
+                                        target="_blank"><img class="statcounter"
+                                                             src="https://c.statcounter.com/12568884/0/10808968/1/"
+                                                             alt="Web Analytics Made Easy - StatCounter"
+                                                             referrerPolicy="no-referrer-when-downgrade"></a></div>
+        </noscript>
+        <!-- End of Statcounter Code -->
 
 </body>
 

@@ -70,7 +70,6 @@ let starterPalette = ["#a91413",
     "#fc65a5",
     "#ffc0cb",
     "#ff69b4",
-
     "#773733",
     "#672154",
     "#000000",
@@ -238,14 +237,11 @@ function percievedBrightness(r, g, b) {
     return parseInt(Math.sqrt(0.299 * Math.pow(r, 2) + 0.587 * Math.pow(g, 2) + 0.114 * Math.pow(b, 2)));
 }
 
-// TODO CURRENT
 function getColorBox(hexColor) {
     return `<div class="colorbox" onClick="copyToClipboard(${hexColor})" 
         data-clipboard-text="${hexColor}"
        style="background:${hexColor};"> ${hexColor} </div>`;
-
 }
-
 
 /*
 IDs of relevant DOM elements to change when a new color is selected
@@ -276,12 +272,10 @@ function setCurrentColor(colorHexCode) {
 
     let hslObject = HEXtoHSL(hexCodeString)
     $('#currentcolorboxhslvalue').empty();
-    $('#currentcolorboxhslvalue').
-        html(`hsl(${hslObject.h}, ${hslObject.s}%, ${hslObject.l}%)`);
+    $('#currentcolorboxhslvalue').html(`hsl(${hslObject.h}, ${hslObject.s}%, ${hslObject.l}%)`);
 
     $('#currentcolorboxcmykvalue').empty();
-    $('#currentcolorboxcmykvalue').
-        text(`${cmykArray[0].toFixed(4)}, ${cmykArray[1].toFixed(4)}, ${cmykArray[2].toFixed(4)}, ${cmykArray[3].toFixed(4)}`);
+    $('#currentcolorboxcmykvalue').text(`${cmykArray[0].toFixed(4)}, ${cmykArray[1].toFixed(4)}, ${cmykArray[2].toFixed(4)}, ${cmykArray[3].toFixed(4)}`);
 
     $('#currentcolorluminancevalue').empty();
     currentcolorluminancepercentvalue
@@ -303,9 +297,7 @@ function toggleCurrentColorBox() {
 
 function generateVariant(hexColor) {
     let hexVariant = RGBToHex(r, g, b);
-    var elm = `<div class="colorbox" onClick="copyToClipboard(${hexVariant})" 
-        data-clipboard-text="${hexVariant}"
-       style="background:${hexVariant};"> ${hexVariant} </div>`;
+    var elm = getColorBox(hexColor);
     $(elm).appendTo($("#variantscontainer"));
 }
 
@@ -383,10 +375,7 @@ function getvariant(hexcolorcode, variantamount) {
     var newblue = randomInteger(bluemin, bluemax);
 
     let hexVariant = rgbtohex(newred, newgreen, newblue);
-
-    var elm = `<div class="colorbox" onClick="copyToClipboard(${hexVariant})" 
-    data-clipboard-text="${hexVariant}"
-   style="background:${hexVariant};"> ${hexVariant} </div>`;
+    var elm = getColorBox(hexVariant);
 
     $(elm).appendTo($(".variantscontainer"));
 }
@@ -443,9 +432,7 @@ function displayneutrals() {
     for (let i = 0; i < 120; i++) {
         if (currentInt >= 0) {
             currentColorInHex = rgbToHex(currentInt, currentInt, currentInt);
-            var elm = `<div class="colorbox" onClick="copyToClipboard(${currentColorInHex})" 
-         data-clipboard-text="${currentColorInHex}"
-        style="background:${currentColorInHex};"> ${currentColorInHex} </div>`;
+            var elm = getColorBox(currentColorInHex);
             $(elm).appendTo($("#neutralscontainer"));
             currentInt = currentInt - 3;
         }
@@ -478,9 +465,7 @@ function displaymorecolors() {
 
         while (j < 8) {
 
-            var elm = `<div class="colorbox" onClick="copyToClipboard(${currentColorInHex})" 
-         data-clipboard-text="${currentColorInHex}"
-        style="background:${currentColorInHex};"> ${currentColorInHex} </div>`;
+            var elm = getColorBox(currentColorInHex);
 
             $(elm).appendTo($("#morecolorscontainer"));
             j++;
@@ -488,8 +473,7 @@ function displaymorecolors() {
             if (lightenordarken == 0) {
                 // This brightens the color
                 currentColorInHex = shadeColor(currentColorInHex, randomInteger(14, 21));
-            }
-            else {
+            } else {
                 // This darkens the color
                 currentColorInHex = shadeColor(currentColorInHex, randomInteger(-20, -14));
             }
@@ -605,12 +589,24 @@ function createVariants() {
         let variantG = hexToRgb2(hexColor).g + randomInteger(-32, 32);
         let variantB = hexToRgb2(hexColor).b + randomInteger(-32, 32);
 
-        if (variantR < 0) { variantR = 0; }
-        if (variantG < 0) { variantG = 0; }
-        if (variantB < 0) { variantB = 0; }
-        if (variantR > 255) { variantR = 255; }
-        if (variantG > 255) { variantG = 255; }
-        if (variantB > 255) { variantB = 255; }
+        if (variantR < 0) {
+            variantR = 0;
+        }
+        if (variantG < 0) {
+            variantG = 0;
+        }
+        if (variantB < 0) {
+            variantB = 0;
+        }
+        if (variantR > 255) {
+            variantR = 255;
+        }
+        if (variantG > 255) {
+            variantG = 255;
+        }
+        if (variantB > 255) {
+            variantB = 255;
+        }
 
         let newVariant = rgbtohex(variantR, variantG, variantB);
 
@@ -658,12 +654,28 @@ function createstarterpalettevariants() {
     }
 }
 
+function goToCurrentColor() {
+    $('html, body').animate({
+        scrollTop: $("#currentcolorcontainer").offset().top
+    }, 700);
+}
 
-function goToGrays(){
+function goToStarterPalette() {
+    $('html, body').animate({
+        scrollTop: $("#startermegacontainer").offset().top
+    }, 700);
+}
+
+function goToGrays() {
     $('html, body').animate({
         scrollTop: $("#grays").offset().top
     }, 700);
+}
 
+function goToRandomColors() {
+    $('html, body').animate({
+        scrollTop: $("#randomcolors").offset().top
+    }, 700);
 }
 
 $(document).ready(function () {
